@@ -10,7 +10,7 @@ class LocationCubit extends Cubit<LocationState> {
   Future<void> getLocation() async {
     LocationPermission permission = await Geolocator.checkPermission();
     if (permission != LocationPermission.denied || permission != LocationPermission.deniedForever){
-      //permission = await Geolocator.requestPermission();
+      permission = await Geolocator.requestPermission();
       emit(LocationLoading());
       try {
         Position position = await Geolocator.getCurrentPosition(
